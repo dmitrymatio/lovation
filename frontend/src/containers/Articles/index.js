@@ -1,14 +1,14 @@
-import React from "react";  
-import Articles from "../../components/Articles";  
-import Query from "../../components/Query";  
+import React from "react";
+import Articles from "../../components/Articles";
+import Query from "../../components/Query";
 import ARTICLES_QUERY from "../../queries/articles/articles";
 
-const Home = () => {  
+const Home = () => {
   return (
     <div>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>Lovation Articles</h1>
+          <h1>Lovation Demo</h1>
           <Query query={ARTICLES_QUERY}>
             {({ data: { articles } }) => {
               return <Articles articles={articles} />;
@@ -20,4 +20,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;

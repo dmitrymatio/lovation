@@ -14,7 +14,7 @@ const Article = () => {
         const imageUrl =
           process.env.NODE_ENV !== "development"
             ? article.image.url
-            : process.env.REACT_APP_BACKEND_URL + article.image.url;
+            : process.env.REACT_APP_BACK_END_URL + article.image.url;
         return (
           <div>
             <div
