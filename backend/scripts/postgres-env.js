@@ -10,7 +10,7 @@ if (process.env.DATABASE_URL) {
   let output = "";
 
   output += `DATABASE_HOST=${host}${newLine}`;
-  output += `DATABASE_PORT=5432`; //${port}${newLine}
+  output += `DATABASE_PORT=${port}${newLine}`;
   output += `DATABASE_NAME=${databaseName}${newLine}`;
   output += `DATABASE_USERNAME=${username}${newLine}`;
   output += `DATABASE_PASSWORD=${password}${newLine}`;
