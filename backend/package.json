@@ -7,7 +7,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "heroku-prebuild": "node scripts/postgres-env.js"
   },
   "devDependencies": {},
   "dependencies": {
@@ -35,7 +36,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "0954543b-0733-46dd-9d64-1a3081aa8819"
+    "uuid": ""
   },
   "engines": {
     "node": ">=10.0.0",
