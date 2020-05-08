@@ -7,8 +7,12 @@ const Query = ({ children, query, id }) => {
   });
 
   if (loading) return <p>Loading...</p>;
-  if (error) console.log(Error: error);
-  return children({ data });
+  if (error) {
+    console.log(error);
+    return <p></p>;
+  } else {
+    return children({ data });
+  }
 };
 
 export default Query;
