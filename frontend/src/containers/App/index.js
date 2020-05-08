@@ -16,7 +16,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
 import client from "../../utils/apolloClient";
 
-
 // Components
 import Nav from "../../components/Nav";
 import Articles from "../Articles";
@@ -24,6 +23,8 @@ import Article from "../Article";
 import Category from "../Category";
 import AuthPage from "../AuthPage";
 import ConnectPage from "../ConnectPage";
+import Profiles from "../Profiles";
+
 /* import HomePage from "../HomePage";
 import NotFound from "../NotFound"; */
 
@@ -55,6 +56,8 @@ const App = () => {
                   component={Category}
                   exact
                 />
+                <ProtectedRoute path="/profiles" component={Profiles} exact />
+
                 {/*                 <Route path="" component={NotFound} />*/}
               </Switch>
             </div>

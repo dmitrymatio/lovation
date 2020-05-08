@@ -8,7 +8,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "apollo-boost": "^0.4.7",
+    "apollo-link": "^1.2.14",
     "apollo-link-context": "^1.0.20",
+    "apollo-link-ws": "^1.0.20",
     "buffetjs": "^1.0.6",
     "graphql": "^15.0.0",
     "lodash": "^4.17.15",
@@ -22,6 +24,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.0",
+    "subscriptions-transport-ws": "^0.9.16",
     "yup": "^0.28.5"
   },
   "scripts": {
