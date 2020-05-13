@@ -1,7 +1,7 @@
-import React from "react";  
+import React from "react";
 import Card from "../Card";
 
-const Articles = ({ articles }) => {  
+const Articles = ({ articles }) => {
   const leftArticlesCount = Math.ceil(articles.length / 5);
   const leftArticles = articles.slice(0, leftArticlesCount);
   const rightArticles = articles.slice(leftArticlesCount, articles.length);
@@ -26,4 +26,4 @@ const Articles = ({ articles }) => {
   );
 };
 
-export default Articles;  
+export default Articles;

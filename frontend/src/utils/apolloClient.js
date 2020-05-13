@@ -16,7 +16,7 @@ const token = JSON.parse(sessionStorage.getItem("jwtToken"));
 /* `Bearer ${token}` === 'Bearer "token"' careful!*/
 
 const httpLink = new HttpLink({
-  uri: `https://lovation-backend-api.herokuapp.com/graphql`,
+  uri: `${process.env.REACT_APP_BACK_END_URL}/graphql`,
   headers: {
     Authorization: `Bearer ${token}`,
   },
