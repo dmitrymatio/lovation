@@ -2,7 +2,6 @@ import React from "react";
 import Articles from "../../components/Articles";
 import Query from "../../components/Query";
 import ARTICLES_QUERY from "../../queries/articles/articles";
-import { Grommet } from "grommet";
 
 const Home = () => {
   return (

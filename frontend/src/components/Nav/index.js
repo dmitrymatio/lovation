@@ -1,48 +1,27 @@
-import React from "react";  
-import Query from "../Query";  
-import { Link } from "react-router-dom";
+import React from "react";
+import { Anchor, Box, Grommet, Header } from "grommet";
+import { grommet } from "grommet/themes";
 
-import CATEGORIES_QUERY from "../../queries/category/categories";
+export const Avatar = ({ ...rest }) => (
+  <Box
+    height="xxsmall"
+    width="xxsmall"
+    round="full"
+    background="url(//s.gravatar.com/avatar/b7fb138d53ba0f573212ccce38a7c43b?s=80)"
+    {...rest}
+  />
+);
 
-const Nav = () => {  
-  return (
-    <div>
-      <Query query={CATEGORIES_QUERY} id={null}>
-        {({ data: { categories } }) => {
-          return (
-            <div>
-              <nav className="uk-navbar-container" data-uk-navbar>
-                <div className="uk-navbar-left">
-                  <ul className="uk-navbar-nav">
-                    <li>
-                      <Link to="/">Lovation</Link>
-                    </li>
-                  </ul>
-                </div>
+const Nav = () => (
+  <Grommet theme={grommet}>
+    <Header background="light-4" pad="small">
+      <Avatar />
+      <Box direction="row" gap="medium">
+        <Anchor label="Home" href="#" />
+        <Anchor label="Profile" href="#" />
+      </Box>
+    </Header>
+  </Grommet>
+);
 
-                <div className="uk-navbar-right">
-                  <ul className="uk-navbar-nav">
-                    {categories.map((category, i) => {
-                      return (
-                        <li key={category.id}>
-                          <Link
-                            to={`/category/${category.id}`}
-                            className="uk-link-reset"
-                          >
-                            {category.name}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </nav>
-            </div>
-          );
-        }}
-      </Query>
-    </div>
-  );
-};
-
-export default Nav;  
+export default Nav;
