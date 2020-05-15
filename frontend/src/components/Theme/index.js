@@ -1,10 +1,8 @@
 const theme = {
   global: {
     colors: {
-      brand: {
-        light: "#82C5CD",
-        dark: "#F7AC70",
-      },
+      brand: "#82C5CD",
+      focus: "clear",
       background: {
         dark: "#111111",
         light: "#FFFFFF",

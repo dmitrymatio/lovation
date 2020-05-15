@@ -20,6 +20,7 @@ import LandingPage from "../LandingPage";
 import AuthPage from "../AuthPage";
 import ConnectPage from "../ConnectPage";
 import Profiles from "../Profiles";
+import Home from "../HomePage"
 
 /* import HomePage from "../HomePage";
 import NotFound from "../NotFound"; */
@@ -38,7 +39,9 @@ const App = () => {
             <Route path="/auth/:authType/:id?" component={AuthPage} exact />
 
             <Route path="/connect/:provider" component={ConnectPage} exact />
-            {/* A user can't go to the Profiles pages if not authenticated */}
+            {/* A user can't go to the protected pages if not authenticated */}
+            <ProtectedRoute path="/home" component={Home} exact />
+
             <ProtectedRoute path="/profiles" component={Profiles} exact />
           </Switch>
         </ApolloProvider>

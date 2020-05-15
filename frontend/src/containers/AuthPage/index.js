@@ -78,7 +78,7 @@ const AuthPage = ({
     setErrors(errors);
   };
 
-  const providers = ["facebook", "github", "google", "twitter"]; // To remove a provider from the list just delete it from this array...
+  const providers = []; // To remove a provider from the list just delete it from this array...
   const authLink = authType === "login" ? "register" : "login";
 
   if (auth.getToken() !== null) {
@@ -86,49 +86,47 @@ const AuthPage = ({
   }
 
   return (
-    <Wrapper>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <h1>Welcome</h1>
+        {authType === "login" &&
+          providers.map((provider) => (
+            <SocialLink provider={provider} key={provider} />
+          ))}
         <div>
-          <h1>Welcome</h1>
-          {authType === "login" &&
-            providers.map((provider) => (
-              <SocialLink provider={provider} key={provider} />
-            ))}
-          <div>
-            <div className="input-wrapper">
-              {inputs.map((input) => {
-                return (
-                  <Inputs
-                    key={input.name}
-                    errors={errors}
-                    {...input}
-                    error="lll"
-                    value={state[input.name]}
-                    onChange={handleChange}
-                  />
-                );
-              })}
-            </div>
-            <Button type="submit" primary>
-              Submit
-            </Button>
+          <div className="input-wrapper">
+            {inputs.map((input) => {
+              return (
+                <Inputs
+                  key={input.name}
+                  errors={errors}
+                  {...input}
+                  error="lll"
+                  value={state[input.name]}
+                  onChange={handleChange}
+                />
+              );
+            })}
           </div>
-          <div>
-            {authType !== "register" && (
-              <div>
-                {authType !== "forgot-password" && (
-                  <>
-                    <Link to="/auth/forgot-password">Forgot Password</Link>
-                    &nbsp;or&nbsp;
-                  </>
-                )}
-                <Link to={`/auth/${authLink}`}>{authLink}</Link>
-              </div>
-            )}
-          </div>
+          <Button type="submit" primary>
+            Submit
+          </Button>
         </div>
-      </form>
-    </Wrapper>
+        <div>
+          {authType !== "register" && (
+            <div>
+              {authType !== "forgot-password" && (
+                <>
+                  <Link to="/auth/forgot-password">Forgot Password</Link>
+                  &nbsp;or&nbsp;
+                </>
+              )}
+              <Link to={`/auth/${authLink}`}>{authLink}</Link>
+            </div>
+          )}
+        </div>
+      </div>
+    </form>
   );
 };
 
