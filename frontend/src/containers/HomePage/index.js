@@ -9,6 +9,7 @@ import {
   Button,
   Tabs,
   Tab,
+  Main,
 } from "grommet";
 import { Chat, Car, TreeOption } from "grommet-icons";
 import theme from "../../components/Theme";
@@ -30,6 +31,7 @@ const Home = () => {
         overflow="hidden"
       >
         <Header />
+        <Box height="100%" width="100%"></Box>
         <AppBar />
       </Box>
     </Grommet>

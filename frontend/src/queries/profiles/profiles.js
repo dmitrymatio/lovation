@@ -4,7 +4,7 @@ const PROFILES_QUERY = gql`
   query Users {
     users {
       id
-      username
+      name
     }
   }
 `;

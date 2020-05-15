@@ -17,14 +17,12 @@ import "../../tailwind.generated.css";
 
 import Header from "../../components/Header";
 import AppBar from "../../components/AppBar";
+import Chatbox from "../../components/Chatbox";
 
-import Profiles_List from "../../components/Profiles";
 import Query from "../../components/Query";
-import PROFILES_QUERY from "../../queries/profiles/profiles";
+import MESSAGES_QUERY from "../../queries/messages/messages";
 
-const Profiles = () => {
-  
-
+const Messages = () => {
   return (
     <Grommet theme={theme}>
       <Box
@@ -38,12 +36,10 @@ const Profiles = () => {
       >
         <Header />
         <Box height="100%" width="100%">
-          <Heading>People near you</Heading>
-          <Query query={PROFILES_QUERY}>
-            {({ data: { users } }) => {
-              return (
-                <List primaryKey="name" data={users} />
-              );
+          <Heading>My chats</Heading>
+          <Query query={MESSAGES_QUERY}>
+            {({ data: { messages } }) => {
+              return <List primaryKey="id" data={messages} />;
             }}
           </Query>
         </Box>
@@ -53,4 +49,4 @@ const Profiles = () => {
   );
 };
 
-export default Profiles;
+export default Messages;

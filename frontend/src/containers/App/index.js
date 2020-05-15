@@ -20,7 +20,8 @@ import LandingPage from "../LandingPage";
 import AuthPage from "../AuthPage";
 import ConnectPage from "../ConnectPage";
 import Profiles from "../Profiles";
-import Home from "../HomePage"
+import Home from "../HomePage";
+import Messages from "../MessagesPage";
 
 /* import HomePage from "../HomePage";
 import NotFound from "../NotFound"; */
@@ -43,6 +44,8 @@ const App = () => {
             <ProtectedRoute path="/home" component={Home} exact />
 
             <ProtectedRoute path="/profiles" component={Profiles} exact />
+
+            <ProtectedRoute path="/messages" component={Messages} exact />
           </Switch>
         </ApolloProvider>
       </Router>
