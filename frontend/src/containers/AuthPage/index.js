@@ -8,7 +8,6 @@ import auth from "../../utils/auth";
 import getQueryParameters from "../../utils/getQueryParameters";
 import request from "../../utils/request";
 import form from "./forms";
-import { Wrapper } from "./components";
 import SocialLink from "./SocialLink";
 
 const AuthPage = ({
@@ -82,7 +81,7 @@ const AuthPage = ({
   const authLink = authType === "login" ? "register" : "login";
 
   if (auth.getToken() !== null) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
 
   return (

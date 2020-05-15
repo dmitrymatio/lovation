@@ -1,13 +1,28 @@
 import React from "react";
-import { Anchor, Box, Grommet, Image } from "grommet";
+import { Anchor, Box, Grommet, Image, Menu } from "grommet";
+import { Power, User, Home, Down } from "grommet-icons";
 import theme from "../Theme";
 
 export const Avatar = () => (
-  <Box height="100%" round="full" border="all" overflow="hidden">
-    <Image
-      fill="vertical"
-      fit="contain"
-      src="//s.gravatar.com/avatar/b7fb138d53ba0f573212ccce38a7c43b?s=80"
+  <Box height="100%" width="25%" align="center" justify="center">
+    <Menu
+      size="xlarge"
+      icon={<Down />}
+      dropProps={{ align: { top: "bottom" } }}
+      items={[
+        { label: "Home", icon: <Home />, gap: "small", href: "/home" },
+        { label: "Profile", icon: <User />, gap: "small", href: "/me" },
+        {
+          label: "Logout",
+          icon: <Power />,
+          reverse: true,
+          gap: "small",
+          onClick: () => {
+            sessionStorage.clear();
+          },
+          href: "/",
+        },
+      ]}
     />
   </Box>
 );

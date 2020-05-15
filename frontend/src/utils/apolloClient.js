@@ -5,12 +5,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 
-const wsLink = new WebSocketLink({
-  uri: `ws://lovation-backend-api.herokuapp.com/graphql`,
-  options: {
-    reconnect: true,
-  },
-});
+
 
 const token = JSON.parse(sessionStorage.getItem("jwtToken"));
 /* `Bearer ${token}` === 'Bearer "token"' careful!*/
@@ -22,20 +17,28 @@ const httpLink = new HttpLink({
   },
 });
 
-const cache = new InMemoryCache();
+const wsLink = new WebSocketLink({
+  uri: "ws://localhost:1337/graphql",
+  options: {
+    reconnect: true,
+  },
+});
 
-const link = split(
+const splitLink = split(
   ({ query }) => {
-    const { kind, operation } = getMainDefinition(query);
-    return kind === "OperationDefinition" && operation === "subscription";
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === "OperationDefinition" &&
+      definition.operation === "subscription"
+    );
   },
   wsLink,
   httpLink
 );
 
 const client = new ApolloClient({
-  link,
-  cache,
+  cache: new InMemoryCache(),
+  link: splitLink
 });
 
 export default client;

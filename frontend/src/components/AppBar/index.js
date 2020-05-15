@@ -1,17 +1,34 @@
 import React from "react";
-import { Anchor, Box, Grommet, Header } from "grommet";
+import { Anchor, Box, Grommet, Header, Nav } from "grommet";
+import { Chat, Gamepad, Favorite, Achievement } from "grommet-icons";
 import theme from "../Theme";
 
-const Nav = () => (
+const AppBar = () => (
   <Grommet theme={theme}>
-    <Box>
-      <Avatar />
-      <Box direction="row" gap="medium">
-        <Anchor label="Home" href="#" />
-        <Anchor label="Profile" href="#" />
-      </Box>
-    </Box>
+    <Nav
+      width="100vw"
+      height="10vh"
+      direction="row"
+      align="center"
+      background="light-3"
+      pad="medium"
+      justify="around"
+      elevation="xlarge"
+    >
+      <Anchor
+        icon={<Favorite size="medium" />}
+        hoverIndicator
+        href="/profiles"
+      />
+      <Anchor
+        icon={<Achievement size="medium" />}
+        hoverIndicator
+        href="/leaderboard"
+      />
+      <Anchor icon={<Gamepad size="medium" />} hoverIndicator href="/games" />
+      <Anchor icon={<Chat size="medium" />} hoverIndicator href="/messages" />
+    </Nav>
   </Grommet>
 );
 
-export default Nav;
+export default AppBar;
