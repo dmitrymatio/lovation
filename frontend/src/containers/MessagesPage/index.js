@@ -22,6 +22,23 @@ import Chatbox from "../../components/Chatbox";
 import Query from "../../components/Query";
 import MESSAGES_QUERY from "../../queries/messages/messages";
 
+const allChats = (messages) => {
+  const myInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  const myUsername = myInfo.username;
+
+  const myChats = messages.filter((message) => {
+    const sender = message.sender.username;
+    const receiver = message.receiver.username;
+    if (sender === myUsername || receiver === myUsername) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  return myChats;
+};
+
 const Messages = () => {
   return (
     <Grommet theme={theme}>
@@ -35,11 +52,11 @@ const Messages = () => {
         overflow="hidden"
       >
         <Header />
-        <Box height="100%" width="100%">
+        <Box height="100%" width="100%" align="center" justify="center">
           <Heading>My chats</Heading>
           <Query query={MESSAGES_QUERY}>
             {({ data: { messages } }) => {
-              return <List primaryKey="id" data={messages} />;
+              return <List primaryKey="content" secondaryKey="" data={allChats(messages)} />;
             }}
           </Query>
         </Box>

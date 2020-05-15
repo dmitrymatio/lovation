@@ -19,9 +19,10 @@ import client from "../../utils/apolloClient";
 import LandingPage from "../LandingPage";
 import AuthPage from "../AuthPage";
 import ConnectPage from "../ConnectPage";
-import Profiles from "../Profiles";
+import Profiles from "../ProfilesPage";
 import Home from "../HomePage";
 import Messages from "../MessagesPage";
+import Games from "../GamesPage";
 
 /* import HomePage from "../HomePage";
 import NotFound from "../NotFound"; */
@@ -46,6 +47,9 @@ const App = () => {
             <ProtectedRoute path="/profiles" component={Profiles} exact />
 
             <ProtectedRoute path="/messages" component={Messages} exact />
+
+            <ProtectedRoute path="/games" component={Games} exact />
+
           </Switch>
         </ApolloProvider>
       </Router>

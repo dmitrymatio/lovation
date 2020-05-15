@@ -59,7 +59,7 @@ const LandingPage = () => {
               className="font-head"
               style={{ "text-shadow": "2px 2px 2px rgba(0,0,0,0.6)" }}
             >
-              love near you
+              Level up your passion
             </Heading>
           </Box>
         </Box>

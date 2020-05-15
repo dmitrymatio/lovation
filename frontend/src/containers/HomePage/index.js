@@ -31,7 +31,10 @@ const Home = () => {
         overflow="hidden"
       >
         <Header />
-        <Box height="100%" width="100%"></Box>
+        <Box height="100%" width="100%">
+
+            
+        </Box>
         <AppBar />
       </Box>
     </Grommet>

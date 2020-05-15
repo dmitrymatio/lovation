@@ -14,17 +14,23 @@ import {
 } from "grommet";
 import theme from "../../components/Theme";
 import "../../tailwind.generated.css";
+import { Gremlin } from "grommet-icons";
 
 import Header from "../../components/Header";
 import AppBar from "../../components/AppBar";
 
-import Profiles_List from "../../components/Profiles";
 import Query from "../../components/Query";
 import PROFILES_QUERY from "../../queries/profiles/profiles";
 
-const Profiles = () => {
-  
+const popMeFromList = (users) => {
+  const myInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  const myId = myInfo.id;
+  const finalList = users.filter((user) => user.id != myId);
+  console.log(finalList);
+  return finalList;
+};
 
+const Profiles = () => {
   return (
     <Grommet theme={theme}>
       <Box
@@ -37,13 +43,12 @@ const Profiles = () => {
         overflow="hidden"
       >
         <Header />
-        <Box height="100%" width="100%">
+        <Box height="100%" width="100%" align="center" justify="center">
           <Heading>People near you</Heading>
           <Query query={PROFILES_QUERY}>
             {({ data: { users } }) => {
-              return (
-                <List primaryKey="name" data={users} />
-              );
+              const otherUsers = popMeFromList(users);
+              return <List primaryKey="name" data={otherUsers} pad="medium" />;
             }}
           </Query>
         </Box>
