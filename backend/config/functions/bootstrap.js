@@ -26,7 +26,7 @@ const setDefaultPermissions = async () => {
     .query("permission", "users-permissions")
     .find({ type: "application", role: role.id });
   await Promise.all(
-    permissions.map(p =>
+    permissions.map((p) =>
       strapi
         .query("permission", "users-permissions")
         .update({ id: p.id }, { enabled: true })
@@ -38,14 +38,14 @@ const isFirstRun = async () => {
   const pluginStore = strapi.store({
     environment: strapi.config.environment,
     type: "type",
-    name: "setup"
+    name: "setup",
   });
   const initHasRun = await pluginStore.get({ key: "initHasRun" });
   await pluginStore.set({ key: "initHasRun", value: true });
   return !initHasRun;
 };
 
-const getFilesizeInBytes = filepath => {
+const getFilesizeInBytes = (filepath) => {
   var stats = fs.statSync(filepath);
   var fileSizeInBytes = stats["size"];
   return fileSizeInBytes;
@@ -54,10 +54,10 @@ const getFilesizeInBytes = filepath => {
 const createSeedData = async () => {
   const categoriesPromises = categories.map(({ ...rest }) => {
     return strapi.services.category.create({
-      ...rest
+      ...rest,
     });
   });
-  const articlesPromises = articles.map(article => {
+  const articlesPromises = articles.map((article) => {
     const { imageFileName, mimeType, ...rest } = article;
     const filepath = path.join(
       strapi.config.seed.path,
@@ -68,15 +68,15 @@ const createSeedData = async () => {
       path: filepath,
       name: imageFileName,
       size,
-      type: mimeType
+      type: mimeType,
     };
     const files = {
-      image
+      image,
     };
     return strapi.services.article.create(
       {
         author: null,
-        ...rest
+        ...rest,
       },
       { files }
     );
@@ -92,3 +92,23 @@ module.exports = async () => {
     await createSeedData();
   }
 };
+/* 
+module.exports = (cb) => {
+  var io = require("socket.io")(strapi.server);
+  var users = [];
+  io.on("connection", (socket) => {
+    socket.user_id = Math.random() * 100000000000000; // not so secure
+    users.push(socket); // save the socket to use it later
+    socket.on("disconnect", () => {
+      users.forEach((user, i) => {
+        // delete saved user when they disconnect
+        if (user.user_id === socket.user_id) users.splice(i, 1);
+      });
+    });
+  });
+  strapi.io = io;
+  // send to all users connected
+  strapi.emitToAllUsers = (food) => io.emit("food_ready", food);
+  cb();
+};
+ */

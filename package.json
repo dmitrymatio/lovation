@@ -11,7 +11,7 @@
     "setup:yarn:frontend": "cd frontend && yarn",
     "develop:yarn": "npm-run-all -p develop:yarn:*",
     "develop:yarn:backend": "cd backend && yarn develop",
-    "develop:yarn:frontend": "cd frontend && yarn develop",
+    "develop:yarn:frontend": "cd frontend && yarn start",
     "build:npm": "cd backend && npm run build",
     "build:yarn": "cd backend && yarn build"
   },

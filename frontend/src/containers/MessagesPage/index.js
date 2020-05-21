@@ -53,12 +53,12 @@ const Messages = () => {
       >
         <Header />
         <Box height="100%" width="100%" align="center" justify="center">
-          <Heading>My chats</Heading>
-          <Query query={MESSAGES_QUERY}>
+          <Chatbox />
+          {/*  <Query query={MESSAGES_QUERY}>
             {({ data: { messages } }) => {
-              return <List primaryKey="content" secondaryKey="" data={allChats(messages)} />;
+              return <Chatbox />;
             }}
-          </Query>
+          </Query> */}
         </Box>
         <AppBar />
       </Box>
