@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormPrevious, Notification, Send, BackTen } from "grommet-icons";
+import { FormPrevious, FormNext, Send, BackTen } from "grommet-icons";
 import {
   Box,
   Button,
@@ -80,11 +80,35 @@ const Chatbox = () => {
   const myUser = myInfo.username;
 
   return (
-    <Grommet theme={theme}>
+    <>
       <Button
-        icon={<Notification />}
+        direction="row"
+        primary
+        reverse
+        color="light-2"
+        label={
+          <Box
+            height="100%"
+            width="100%"
+            align="center"
+            justify="around"
+            direction="row"
+          >
+            <Avatar src="//s.gravatar.com/avatar/b7fb138d53ba0f573212ccce38a7c43b?s=80"></Avatar>
+            <Text color="black">{chat.chat_with}</Text>
+          </Box>
+        }
+        style={{
+          height: "10vh",
+          width: "90vw",
+          margin: "1vh 0",
+          "border-radius": "5px",
+          "box-shadow": "1px 1px 4px"
+        }}
         onClick={() => setShowChatBox(!showChatBox)}
       />
+
+      {/* Layer overlay shows up when button is pressed */}
       {showChatBox && (
         <Layer
           modal
@@ -195,7 +219,7 @@ const Chatbox = () => {
           </Box>
         </Layer>
       )}
-    </Grommet>
+    </>
   );
 };
 

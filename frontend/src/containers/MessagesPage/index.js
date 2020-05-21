@@ -52,7 +52,14 @@ const Messages = () => {
         overflow="hidden"
       >
         <Header />
-        <Box height="100%" width="100%" align="center" justify="center">
+        <Box
+          height="100%"
+          width="100%"
+          align="center"
+          justify="start"
+          pad="medium"
+          overflow={{ vertical: "scroll", horizontal: "hidden" }}
+        >
           <Chatbox />
           {/*  <Query query={MESSAGES_QUERY}>
             {({ data: { messages } }) => {
