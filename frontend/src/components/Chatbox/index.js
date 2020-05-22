@@ -110,7 +110,7 @@ const Chatbox = (props) => {
               }}
               size="8vh"
               elevation="small"
-              src={"http://localhost:1337" + chat.chat_with.profile_photo.url}
+              src={process.env.REACT_APP_BACK_END_URL + chat.chat_with.profile_photo.url}
             ></Avatar>
             <Box overflow="hidden" justify="start" align="start">
               <Text color="black" size="medium">
@@ -176,7 +176,7 @@ const Chatbox = (props) => {
                     }}
                     elevation="small"
                     src={
-                      "http://localhost:1337" + chat.chat_with.profile_photo.url
+                      process.env.REACT_APP_BACK_END_URL + chat.chat_with.profile_photo.url
                     }
                   />
                   <Text color="black">{chat.chat_with.name}</Text>

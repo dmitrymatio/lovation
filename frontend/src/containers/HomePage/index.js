@@ -21,10 +21,9 @@ import "../../tailwind.generated.css";
 import Header from "../../components/Header";
 import AppBar from "../../components/AppBar";
 
-const myInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-const myName = myInfo.name;
-
 const Home = () => {
+  const myInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  const myName = myInfo.name;
   const complete = 60;
   return (
     <Grommet theme={theme}>
@@ -71,7 +70,7 @@ const Home = () => {
               <Avatar
                 size="20vh"
                 elevation="small"
-                src={"http://localhost:1337" + myInfo.profile_photo.url}
+                src={process.env.REACT_APP_BACK_END_URL + myInfo.profile_photo.url}
               />
             </Stack>
             <Text>Your profile is {complete}% complete</Text>

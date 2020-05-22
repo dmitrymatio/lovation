@@ -95,7 +95,7 @@ const ProfileCard = (props) => {
               }}
               size="8vh"
               elevation="small"
-              src={"http://localhost:1337" + chat.profile_photo.url}
+              src={process.env.REACT_APP_BACK_END_URL + chat.profile_photo.url}
             ></Avatar>
             <Box overflow="hidden" justify="start" align="start">
               <Text color="black" size="medium">
@@ -166,7 +166,7 @@ const ProfileCard = (props) => {
                 >
                   <Image
                     fit="cover"
-                    src={"http://localhost:1337" + chat.profile_photo.url}
+                    src={process.env.REACT_APP_BACK_END_URL + chat.profile_photo.url}
                   />
                 </Box>
                 <Box height="50%" width="100%" pad="large" gap="medium">
