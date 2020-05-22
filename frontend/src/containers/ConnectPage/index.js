@@ -21,7 +21,7 @@ const ConnectPage = ({
 
         auth.setToken(response.jwt, true);
         auth.setUserInfo(response.user, true);
-        pushRef.current("/");
+        pushRef.current("/home");
       } catch (err) {
         // TODO handle API errors
         console.log({ err });

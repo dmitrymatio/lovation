@@ -10,20 +10,21 @@
  * reloading is not a necessity for you then you can refactor it and remove
  * the linting exception.
  */
-import React, { memo } from "react";
-import { Fonts, GlobalStyle } from "buffetjs";
+import React, { memo, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
 import client from "../../utils/apolloClient";
 
-
 // Components
-import Nav from "../../components/Nav";
-import Articles from "../Articles";
-import Article from "../Article";
-import Category from "../Category";
+import LandingPage from "../LandingPage";
 import AuthPage from "../AuthPage";
 import ConnectPage from "../ConnectPage";
+import Profiles from "../ProfilesPage";
+import Home from "../HomePage";
+import Messages from "../MessagesPage";
+import Games from "../GamesPage";
+import Leaderboard from "../Leaderboard";
+
 /* import HomePage from "../HomePage";
 import NotFound from "../NotFound"; */
 
@@ -32,36 +33,30 @@ import ProtectedRoute from "../ProtectedRoute";
 
 const App = () => {
   return (
-    <div className="App">
-      <>
-        <Fonts />
-        <GlobalStyle />
-        <Router>
-          <ApolloProvider client={client}>
-            <div>
-              <Nav />
-              <Switch>
-                {/* A user can't go to the Articles pages if not authenticated */}
-                <Route exact path="/auth/:authType/:id?" component={AuthPage} />
-                <Route
-                  exact
-                  path="/connect/:provider"
-                  component={ConnectPage}
-                />
-                <ProtectedRoute path="/" component={Articles} exact />
-                <ProtectedRoute path="/article/:id" component={Article} exact />
-                <ProtectedRoute
-                  path="/category/:id"
-                  component={Category}
-                  exact
-                />
-                {/*                 <Route path="" component={NotFound} />*/}
-              </Switch>
-            </div>
-          </ApolloProvider>
-        </Router>
-      </>
-    </div>
+    <>
+      <Router>
+        <ApolloProvider client={client}>
+          <Switch>
+            <Route path="/" component={LandingPage} exact />
+
+            <Route path="/auth/:authType/:id?" component={AuthPage} exact />
+
+            <Route path="/connect/:provider" component={ConnectPage} exact />
+            {/* A user can't go to the protected pages if not authenticated */}
+            <ProtectedRoute path="/home" component={Home} exact />
+
+            <ProtectedRoute path="/profiles" component={Profiles} exact />
+
+            <ProtectedRoute path="/messages" component={Messages} exact />
+
+            <ProtectedRoute path="/games" component={Games} exact />
+
+            <ProtectedRoute path="/leaderboard" component={Leaderboard} exact />
+
+          </Switch>
+        </ApolloProvider>
+      </Router>
+    </>
   );
 };
 
