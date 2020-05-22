@@ -12,26 +12,18 @@ import {
   Tab,
   Main,
   List,
+  Distribution,
 } from "grommet";
 import theme from "../../components/Theme";
 import "../../tailwind.generated.css";
-import { Gremlin } from "grommet-icons";
-
+import { Trophy } from "grommet-icons";
 import Header from "../../components/Header";
 import AppBar from "../../components/AppBar";
 import ProfileCard from "../../components/Profiles";
 import Query from "../../components/Query";
 import PROFILES_QUERY from "../../queries/profiles/profiles";
 
-const popMeFromList = (users) => {
-  const myInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-  const myId = myInfo.id;
-  const finalList = users.filter((user) => user.id != myId);
-  //sort based on score using lodash
-  return array.sortBy(finalList, "score").reverse();
-};
-
-const Profiles = () => {
+const Leaderboard = () => {
   return (
     <Grommet theme={theme}>
       <Box
@@ -48,25 +40,31 @@ const Profiles = () => {
           height="100%"
           width="100%"
           align="center"
-          justify="start"
+          justify="center"
           pad="medium"
           gap="medium"
         >
-          <Query query={PROFILES_QUERY}>
-            {({ data: { users } }) => {
-              const otherUsers = popMeFromList(users);
-
-              return (
-                <List
-                  border={{ color: "none" }}
-                  primaryKey={(user) => {
-                    return <ProfileCard chat={user} />;
-                  }}
-                  data={otherUsers}
-                />
-              );
-            }}
-          </Query>
+          <Box
+            justify="center"
+            round="small"
+            pad="medium"
+            align="center"
+            gap="small"
+            elevation="small"
+          >
+            <Trophy size="large" />
+            <Query query={PROFILES_QUERY}>
+              {({ data: { users } }) => {
+                return (
+                  <List
+                    primaryKey="name"
+                    secondaryKey="score"
+                    data={array.sortBy(users, "score").reverse()}
+                  />
+                );
+              }}
+            </Query>
+          </Box>
         </Box>
         <AppBar />
       </Box>
@@ -74,4 +72,4 @@ const Profiles = () => {
   );
 };
 
-export default Profiles;
+export default Leaderboard;

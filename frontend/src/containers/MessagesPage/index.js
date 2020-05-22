@@ -98,7 +98,6 @@ const Messages = () => {
           justify="start"
           pad="medium"
           gap="medium"
-          overflow="auto"
         >
           <Query query={MESSAGES_QUERY}>
             {({ data: { messages } }) => {

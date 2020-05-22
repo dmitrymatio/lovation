@@ -23,6 +23,7 @@ import Profiles from "../ProfilesPage";
 import Home from "../HomePage";
 import Messages from "../MessagesPage";
 import Games from "../GamesPage";
+import Leaderboard from "../Leaderboard";
 
 /* import HomePage from "../HomePage";
 import NotFound from "../NotFound"; */
@@ -49,6 +50,8 @@ const App = () => {
             <ProtectedRoute path="/messages" component={Messages} exact />
 
             <ProtectedRoute path="/games" component={Games} exact />
+
+            <ProtectedRoute path="/leaderboard" component={Leaderboard} exact />
 
           </Switch>
         </ApolloProvider>

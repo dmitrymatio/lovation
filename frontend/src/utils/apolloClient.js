@@ -17,14 +17,14 @@ const httpLink = new HttpLink({
   },
 });
 
-const wsLink = new WebSocketLink({
+/* const wsLink = new WebSocketLink({
   uri: "ws://localhost:1337/graphql",
   options: {
     reconnect: true,
   },
-});
+}); */
 
-const splitLink = split(
+/* const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
     return (
@@ -34,11 +34,11 @@ const splitLink = split(
   },
   wsLink,
   httpLink
-);
+); */
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: splitLink
+  link: httpLink
 });
 
 export default client;

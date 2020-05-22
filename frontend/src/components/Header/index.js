@@ -11,7 +11,6 @@ export const Avatar = () => (
       dropProps={{ align: { top: "bottom" } }}
       items={[
         { label: "Home", icon: <Home />, gap: "small", href: "/home" },
-        { label: "Profile", icon: <User />, gap: "small", href: "/me" },
         {
           label: "Logout",
           icon: <Power />,

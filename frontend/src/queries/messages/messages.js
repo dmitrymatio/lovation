@@ -8,6 +8,7 @@ const MESSAGES_QUERY = gql`
       created_at
       updated_at
       sender {
+        id
         username
         name
         profile_photo {
@@ -15,6 +16,7 @@ const MESSAGES_QUERY = gql`
         }
       }
       receiver {
+        id
         username
         name
         profile_photo {

@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 const Query = ({ children, query, id }) => {
   const { data, loading, error } = useQuery(query, {
     variables: { id: id },
+    pollInterval: 500,
   });
 
   if (loading) return <p>Loading...</p>;

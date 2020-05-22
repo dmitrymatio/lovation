@@ -6,6 +6,11 @@ const PROFILES_QUERY = gql`
       id
       name
       username
+      score
+      coins
+      profile_photo {
+        url
+      }
     }
   }
 `;
