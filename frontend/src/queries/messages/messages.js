@@ -9,9 +9,17 @@ const MESSAGES_QUERY = gql`
       updated_at
       sender {
         username
+        name
+        profile_photo {
+          url
+        }
       }
       receiver {
         username
+        name
+        profile_photo {
+          url
+        }
       }
     }
   }

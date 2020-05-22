@@ -15,63 +15,18 @@ import {
 } from "grommet";
 import theme from "../Theme";
 
-const chat = {
-  chat_with: "Jasmine Lam",
-  messages: [
-    {
-      id: "1",
-      content: "If you were a vegetable you'd be a cute-cumber",
-      sender: {
-        username: "dmitrymatio",
-      },
-      receiver: {
-        username: "jasminelam",
-      },
-    },
-    {
-      id: "2",
-      content: "Nice one",
-      sender: {
-        username: "jasminelam",
-      },
-      receiver: {
-        username: "dmitrymatio",
-      },
-    },
-    {
-      id: "3",
-      content: "You free this friday?",
-      sender: {
-        username: "dmitrymatio",
-      },
-      receiver: {
-        username: "jasminelam",
-      },
-    },
-    {
-      id: "4",
-      content: "I have a project presentation. Can we do sunday instead?",
-      sender: {
-        username: "jasminelam",
-      },
-      receiver: {
-        username: "dmitrymatio",
-      },
-    },
-    {
-      id: "5",
-      content: "Sure thing! Cya then",
-      sender: {
-        username: "dmitrymatio",
-      },
-      receiver: {
-        username: "jasminelam",
-      },
-    },
-  ],
+const charLimit = (string) => {
+  const limit = 20;
+  if (string.length > limit) {
+    return `${string.substring(0, limit)}...`;
+  } else {
+    return string;
+  }
 };
 
-const Chatbox = () => {
+const Chatbox = (props) => {
+  const chat = props.chat;
+
   const [showChatBox, setShowChatBox] = useState(false);
   const [value, setValue] = React.useState("");
   const onChange = (event) => setValue(event.target.value);
@@ -80,31 +35,49 @@ const Chatbox = () => {
   const myUser = myInfo.username;
 
   return (
-    <>
+    <Box
+      height={{ min: "10vh", max: "10vh" }}
+      width={{ min: "90vw" }}
+      background="light-2"
+      align="center"
+      justify="around"
+      direction="row"
+      round="small"
+      elevation="small"
+    >
       <Button
-        direction="row"
-        primary
-        reverse
-        color="light-2"
+        plain
+        fill={true}
         label={
           <Box
-            height="100%"
-            width="100%"
+            fill={true}
             align="center"
-            justify="around"
+            justify="start"
             direction="row"
+            gap="large"
+            pad={{ horizontal: "large", vertical: "medium" }}
           >
-            <Avatar src="//s.gravatar.com/avatar/b7fb138d53ba0f573212ccce38a7c43b?s=80"></Avatar>
-            <Text color="black">{chat.chat_with}</Text>
+            <Avatar
+              border={{
+                color: "border",
+                size: "xsmall",
+                style: "solid",
+                side: "all",
+              }}
+              size="8vh"
+              elevation="small"
+              src={"http://localhost:1337" + chat.chat_with.profile_photo.url}
+            ></Avatar>
+            <Box overflow="hidden" justify="start" align="start">
+              <Text color="black" size="medium">
+                {charLimit(chat.chat_with.name)}
+              </Text>
+              <Text color="dark-4" size="xsmall">
+                {charLimit(chat.messages[chat.messages.length - 1].content)}
+              </Text>
+            </Box>
           </Box>
         }
-        style={{
-          height: "10vh",
-          width: "90vw",
-          margin: "1vh 0",
-          "border-radius": "5px",
-          "box-shadow": "1px 1px 4px"
-        }}
         onClick={() => setShowChatBox(!showChatBox)}
       />
 
@@ -141,54 +114,71 @@ const Chatbox = () => {
               >
                 <Button
                   plain
-                  icon={<FormPrevious size="large" />}
+                  icon={<FormPrevious size="medium" />}
                   onClick={() => setShowChatBox(false)}
                 />
                 <Box height="100%" align="center" justify="center">
-                  <Avatar src="//s.gravatar.com/avatar/b7fb138d53ba0f573212ccce38a7c43b?s=80"></Avatar>
-                  <Text color="black">{chat.chat_with}</Text>
+                  <Avatar
+                    src={
+                      "http://localhost:1337" + chat.chat_with.profile_photo.url
+                    }
+                  ></Avatar>
+                  <Text color="black">{chat.chat_with.name}</Text>
                 </Box>
 
                 <Button
                   plain
-                  icon={<BackTen size="large" />}
+                  icon={<BackTen size="medium" />}
                   onClick={() => {}}
                 />
               </Box>
 
               {/* Main chat box history */}
-              <Box width="100%" height="80vh">
+              <Box width="100%" height="80vh" justify="end">
                 <List
                   border={{ color: "none" }}
                   data={chat.messages}
                   primaryKey={(message) => {
+                    const d = new Date(message.created_at);
                     if (message.sender.username == myUser) {
                       return (
-                        <Button
-                          primary
-                          color="neutral-3"
-                          label={
-                            <Text textAlign="start" color="white">
+                        <Box>
+                          <Box
+                            background="brand"
+                            alignSelf="end"
+                            style={{ "max-width": "75vw" }}
+                            pad="medium"
+                            round="small"
+                            elevation="small"
+                          >
+                            <Text textAlign="start" color="black">
                               {message.content}
                             </Text>
-                          }
-                          alignSelf="end"
-                          style={{ "max-width": "75vw" }}
-                        ></Button>
+                          </Box>
+                          <Text alignSelf="end" size="small">
+                            {d.toDateString()}
+                          </Text>
+                        </Box>
                       );
                     } else {
                       return (
-                        <Button
-                          primary
-                          color="dark-3"
-                          label={
-                            <Text textAlign="start" color="white">
+                        <Box>
+                          <Box
+                            background="white"
+                            alignSelf="start"
+                            style={{ "max-width": "75vw" }}
+                            pad="medium"
+                            round="small"
+                            elevation="small"
+                          >
+                            <Text textAlign="start" color="black">
                               {message.content}
                             </Text>
-                          }
-                          alignSelf="start"
-                          style={{ "max-width": "75vw" }}
-                        ></Button>
+                          </Box>
+                          <Text alignSelf="start" size="small">
+                            {d.toDateString()}
+                          </Text>
+                        </Box>
                       );
                     }
                   }}
@@ -208,7 +198,7 @@ const Chatbox = () => {
                 <TextInput value={value} reverse onChange={onChange} />
                 <Button
                   plain
-                  icon={<Send size="large" />}
+                  icon={<Send size="medium" />}
                   margin={{ left: "small" }}
                   onClick={() => {
                     console.log("hello");
@@ -219,7 +209,7 @@ const Chatbox = () => {
           </Box>
         </Layer>
       )}
-    </>
+    </Box>
   );
 };
 

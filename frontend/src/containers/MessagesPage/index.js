@@ -1,4 +1,5 @@
 import React from "react";
+import array from "lodash";
 import {
   Box,
   Grommet,
@@ -22,10 +23,10 @@ import Chatbox from "../../components/Chatbox";
 import Query from "../../components/Query";
 import MESSAGES_QUERY from "../../queries/messages/messages";
 
-const allChats = (messages) => {
+const filterMessages = (messages) => {
   const myInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const myUsername = myInfo.username;
-
+  // filters out messages not intended for the signed in user
   const myChats = messages.filter((message) => {
     const sender = message.sender.username;
     const receiver = message.receiver.username;
@@ -36,7 +37,45 @@ const allChats = (messages) => {
     }
   });
 
-  return myChats;
+  const chats = [];
+
+  myChats.filter((chat) => {
+    const sender = chat.sender;
+    const receiver = chat.receiver;
+    if (sender.username !== myUsername) {
+      chats.push(sender);
+    } else {
+      chats.push(receiver);
+    }
+  });
+
+  //create a unique set of all users chatting with signed in user
+  const uniqChats = array.uniqBy(chats, "username");
+
+  // final object containing sepparated chat information based on the unique set
+  let finalChats = [];
+  uniqChats.forEach((chatUser) => {
+    const chatMessages = myChats.filter((message) => {
+      const sender = message.sender.username;
+      const receiver = message.receiver.username;
+      if (sender === chatUser.username || receiver === chatUser.username) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    finalChats.push({ chat_with: chatUser, messages: chatMessages });
+  });
+  finalChats.sort((a, b) => (a.id > b.id ? 1 : -1));
+  return (
+    <List
+      border={{ color: "none" }}
+      primaryKey={(chat) => {
+        return <Chatbox chat={chat} />;
+      }}
+      data={finalChats}
+    />
+  );
 };
 
 const Messages = () => {
@@ -58,14 +97,14 @@ const Messages = () => {
           align="center"
           justify="start"
           pad="medium"
-          overflow={{ vertical: "scroll", horizontal: "hidden" }}
+          gap="medium"
+          overflow="auto"
         >
-          <Chatbox />
-          {/*  <Query query={MESSAGES_QUERY}>
+          <Query query={MESSAGES_QUERY}>
             {({ data: { messages } }) => {
-              return <Chatbox />;
+              return filterMessages(messages);
             }}
-          </Query> */}
+          </Query>
         </Box>
         <AppBar />
       </Box>
