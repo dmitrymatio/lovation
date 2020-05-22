@@ -5,8 +5,6 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 
-
-
 const token = JSON.parse(sessionStorage.getItem("jwtToken"));
 /* `Bearer ${token}` === 'Bearer "token"' careful!*/
 
@@ -38,7 +36,7 @@ const httpLink = new HttpLink({
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: httpLink
+  link: httpLink,
 });
 
 export default client;
