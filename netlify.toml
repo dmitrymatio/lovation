@@ -1,7 +1,7 @@
 [build]
   base = "frontend/"
   publish = "build/"
-  command = "yarn run build"
+  command = "CI= yarn run build"
 
 [template.environment]
   REACT_APP_BACK_END_URL = "https://lovation-backend-api.herokuapp.com"
