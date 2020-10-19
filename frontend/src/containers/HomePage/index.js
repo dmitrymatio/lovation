@@ -65,7 +65,7 @@ const Home = () => {
               elevation="small"
               width="90%"
             >
-              <Heading level="2">Welcome Back {myName.split(" ")[0]}</Heading>
+              <Heading level="2">Welcome Back {myName ? myName.split(" ")[0] : "Friend"}</Heading>
               <Stack anchor="center">
                 <Meter
                   size="small"
@@ -82,7 +82,7 @@ const Home = () => {
                 <Avatar
                   size="20vh"
                   elevation="small"
-                  src={process.env.REACT_APP_BACK_END_URL + myInfo.profile_photo.url}
+                  src="https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png"
                 />
               </Stack>
               <Text>Your profile is {complete}% complete</Text>

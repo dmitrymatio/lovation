@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "react-apollo";
 
 const Query = ({ children, query, id }) => {
   const { data, loading, error } = useQuery(query, {

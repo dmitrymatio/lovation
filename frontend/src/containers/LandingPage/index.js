@@ -91,7 +91,7 @@ const LandingPage = () => {
             <Box
               align="center"
               height="100%"
-              width="25vw"
+              width="25%"
               justify="center"
               background="#82C5CD"
               animation={[

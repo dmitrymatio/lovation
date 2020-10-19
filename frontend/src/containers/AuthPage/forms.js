@@ -20,7 +20,7 @@ const form = {
     inputs: [
       {
         label: "Username",
-        name: "username",
+        name: "identifier",
         type: "text",
         placeholder: "johndoe@gmail.com",
       },
@@ -37,7 +37,7 @@ const form = {
       },
     ],
     schema: yup.object({
-      username: yup.string().required(),
+      identifier: yup.string().required(),
       password: yup.string().required(),
     }),
   },

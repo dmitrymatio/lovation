@@ -36,21 +36,21 @@ export const Logo = () => (
 );
 
 const Header = () => (
-  <Grommet theme={theme}>
-    <Box
-      width="100vw"
-      height="10vh"
-      direction="row"
-      align="center"
-      background="light-3"
-      pad="medium"
-      justify="between"
-      elevation="xsmall"
-    >
-      <Logo />
-      <Avatar />
-    </Box>
-  </Grommet>
+
+  <Box
+    height="10vh"
+    width="100%"
+    direction="row"
+    align="center"
+    background="light-3"
+    pad="medium"
+    justify="between"
+    elevation="xsmall"
+  >
+    <Logo />
+    <Avatar />
+  </Box>
+
 );
 
 export default Header;

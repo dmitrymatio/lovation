@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "react-apollo";
 import {
   FormPrevious,
   FormClose,
@@ -66,7 +66,7 @@ const ProfileCard = (props) => {
   return (
     <Box
       height={{ min: "10vh", max: "10vh" }}
-      width={{ min: "90vw" }}
+      width={{ min: "90%" }}
       background="light-2"
       align="center"
       justify="around"
@@ -95,7 +95,7 @@ const ProfileCard = (props) => {
               }}
               size="8vh"
               elevation="small"
-              src={process.env.REACT_APP_BACK_END_URL + chat.profile_photo.url}
+              src="https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png"
             ></Avatar>
             <Box overflow="hidden" justify="start" align="start">
               <Text color="black" size="medium">
@@ -166,7 +166,7 @@ const ProfileCard = (props) => {
                 >
                   <Image
                     fit="cover"
-                    src={process.env.REACT_APP_BACK_END_URL + chat.profile_photo.url}
+                    src="https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png"
                   />
                 </Box>
                 <Box height="50%" width="100%" pad="large" gap="medium">
@@ -211,6 +211,7 @@ const ProfileCard = (props) => {
                       if (value !== "") {
                         sendMessage();
                         setValue("");
+                        alert("Message sent! You can now see them in your messages tab.")
                       }
                     }}
                   />
