@@ -28,45 +28,56 @@ const Leaderboard = () => {
     <Grommet theme={theme}>
       <Box
         direction="column"
-        justify="between"
         align="center"
-        background="linear-gradient(135deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)"
         width="100vw"
         height="100vh"
-        overflow="hidden"
+        background={{
+          "image": "linear-gradient(165deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)",
+          "opacity": "medium"
+        }}
       >
-        <Header />
         <Box
-          height="100%"
-          width="100%"
+          direction="column"
+          justify="between"
           align="center"
-          justify="center"
-          pad="medium"
-          gap="medium"
+          background={{ "image": "linear-gradient(135deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)" }}
+          overflow="hidden"
+          className="w-full h-full land:w-1/4"
+          elevation="xlarge"
         >
+          <Header />
           <Box
-            justify="center"
-            round="small"
-            pad="medium"
+            height="100%"
+            width="100%"
             align="center"
-            gap="small"
-            elevation="small"
+            justify="center"
+            pad="medium"
+            gap="medium"
           >
-            <Trophy size="large" />
-            <Query query={PROFILES_QUERY}>
-              {({ data: { users } }) => {
-                return (
-                  <List
-                    primaryKey="name"
-                    secondaryKey="score"
-                    data={array.sortBy(users, "score").reverse()}
-                  />
-                );
-              }}
-            </Query>
+            <Box
+              justify="center"
+              round="small"
+              pad="medium"
+              align="center"
+              gap="small"
+              elevation="small"
+            >
+              <Trophy size="large" />
+              <Query query={PROFILES_QUERY}>
+                {({ data: { users } }) => {
+                  return (
+                    <List
+                      primaryKey="name"
+                      secondaryKey="score"
+                      data={array.sortBy(users, "score").reverse()}
+                    />
+                  );
+                }}
+              </Query>
+            </Box>
           </Box>
+          <AppBar />
         </Box>
-        <AppBar />
       </Box>
     </Grommet>
   );

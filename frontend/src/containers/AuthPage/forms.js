@@ -20,7 +20,7 @@ const form = {
     inputs: [
       {
         label: "Username",
-        name: "identifier",
+        name: "username",
         type: "text",
         placeholder: "johndoe@gmail.com",
       },
@@ -37,7 +37,7 @@ const form = {
       },
     ],
     schema: yup.object({
-      identifier: yup.string().required(),
+      username: yup.string().required(),
       password: yup.string().required(),
     }),
   },
@@ -68,9 +68,9 @@ const form = {
       },
     ],
     schema: yup.object({
-      email: yup.string().email().required(),
-      username: yup.string().required(),
-      password: yup.string().required(),
+      email: yup.string().matches(/^\S*$/).email().required(),
+      username: yup.string().matches(/^\S*$/).required(),
+      password: yup.string().matches(/^\S*$/).required(),
       passwordConfirmation: yup
         .string()
         .oneOf([yup.ref("password"), null])

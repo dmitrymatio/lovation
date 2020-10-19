@@ -31,83 +31,96 @@ const Home = () => {
         direction="column"
         justify="between"
         align="center"
-        background="linear-gradient(135deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)"
+        background={{
+          "image": "linear-gradient(165deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)",
+          "opacity": "medium"
+        }}
         width="100vw"
         height="100vh"
         overflow="hidden"
       >
-        <Header />
         <Box
-          height="80vh"
-          width="100vw"
-          pad="large"
+          direction="column"
+          justify="between"
           align="center"
-          gap="medium"
+          background={{ "image": "linear-gradient(135deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)" }}
+          overflow="hidden"
+          className="w-full h-full land:w-1/4"
+          elevation="xlarge"
         >
+          <Header />
           <Box
-            justify="center"
-            round="small"
-            pad="medium"
+            height="80vh"
+            width="100vw"
+            pad="large"
             align="center"
-            gap="small"
-            elevation="small"
-            width="90%"
+            gap="medium"
           >
-            <Heading level="2">Welcome Back {myName.split(" ")[0]}</Heading>
-            <Stack anchor="center">
-              <Meter
-                size="small"
-                type="circle"
-                values={[
-                  {
-                    value: complete,
-                    label: "sixty",
-                    onClick: () => {},
-                  },
-                ]}
-                aria-label="meter"
-              />
-              <Avatar
-                size="20vh"
-                elevation="small"
-                src={process.env.REACT_APP_BACK_END_URL + myInfo.profile_photo.url}
-              />
-            </Stack>
-            <Text>Your profile is {complete}% complete</Text>
-          </Box>
-          <Box
-            justify="center"
-            round="small"
-            pad="medium"
-            align="start"
-            gap="small"
-            elevation="small"
-            width="90%"
-          >
-            <Heading level="3">Offers:</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua...
+            <Box
+              justify="center"
+              round="small"
+              pad="medium"
+              align="center"
+              gap="small"
+              elevation="small"
+              width="90%"
+            >
+              <Heading level="2">Welcome Back {myName.split(" ")[0]}</Heading>
+              <Stack anchor="center">
+                <Meter
+                  size="small"
+                  type="circle"
+                  values={[
+                    {
+                      value: complete,
+                      label: "sixty",
+                      onClick: () => { },
+                    },
+                  ]}
+                  aria-label="meter"
+                />
+                <Avatar
+                  size="20vh"
+                  elevation="small"
+                  src={process.env.REACT_APP_BACK_END_URL + myInfo.profile_photo.url}
+                />
+              </Stack>
+              <Text>Your profile is {complete}% complete</Text>
+            </Box>
+            <Box
+              justify="center"
+              round="small"
+              pad="medium"
+              align="start"
+              gap="small"
+              elevation="small"
+              width="90%"
+            >
+              <Heading level="3">Offers:</Heading>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua...
             </Text>
-          </Box>
+            </Box>
 
-          <Box
-            justify="center"
-            round="small"
-            pad="medium"
-            align="start"
-            gap="small"
-            elevation="small"
-            width="90%"
-          >
-            <Heading level="3">News:</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua...
+            <Box
+              justify="center"
+              round="small"
+              pad="medium"
+              align="start"
+              gap="small"
+              elevation="small"
+              width="90%"
+            >
+              <Heading level="3">News:</Heading>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua...
             </Text>
+            </Box>
           </Box>
+          <AppBar />
         </Box>
-        <AppBar />
       </Box>
     </Grommet>
   );

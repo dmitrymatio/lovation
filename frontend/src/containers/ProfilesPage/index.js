@@ -36,39 +36,50 @@ const Profiles = () => {
     <Grommet theme={theme}>
       <Box
         direction="column"
-        justify="between"
         align="center"
-        background="linear-gradient(135deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)"
         width="100vw"
         height="100vh"
-        overflow="hidden"
+        background={{
+          "image": "linear-gradient(165deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)",
+          "opacity": "medium"
+        }}
       >
-        <Header />
         <Box
-          height="100%"
-          width="100%"
+          direction="column"
+          justify="between"
           align="center"
-          justify="start"
-          pad="medium"
-          gap="medium"
+          background={{ "image": "linear-gradient(135deg, rgba(247,172,112,0.5) 30%, rgba(130,197,205,0.5) 70%)" }}
+          overflow="hidden"
+          className="w-full h-full land:w-1/4"
+          elevation="xlarge"
         >
-          <Query query={PROFILES_QUERY}>
-            {({ data: { users } }) => {
-              const otherUsers = popMeFromList(users);
+          <Header />
+          <Box
+            height="100%"
+            width="100%"
+            align="center"
+            justify="start"
+            pad="medium"
+            gap="medium"
+          >
+            <Query query={PROFILES_QUERY}>
+              {({ data: { users } }) => {
+                const otherUsers = popMeFromList(users);
 
-              return (
-                <List
-                  border={{ color: "none" }}
-                  primaryKey={(user) => {
-                    return <ProfileCard chat={user} />;
-                  }}
-                  data={otherUsers}
-                />
-              );
-            }}
-          </Query>
+                return (
+                  <List
+                    border={{ color: "none" }}
+                    primaryKey={(user) => {
+                      return <ProfileCard chat={user} />;
+                    }}
+                    data={otherUsers}
+                  />
+                );
+              }}
+            </Query>
+          </Box>
+          <AppBar />
         </Box>
-        <AppBar />
       </Box>
     </Grommet>
   );
