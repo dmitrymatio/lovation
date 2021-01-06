@@ -12,7 +12,7 @@
     "apollo-link-context": "^1.0.20",
     "apollo-link-ws": "^1.0.20",
     "autoprefixer": "^10.0.1",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "buffetjs": "^1.0.6",
     "graphql": "^15.0.0",
     "grommet": "^2.13.0",
